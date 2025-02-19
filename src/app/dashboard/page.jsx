@@ -6,7 +6,6 @@ import RadialChart from '../ui/RadialChart';
 export default function Page() {
     return(
         <>
-        <secton>
 
         <div className='md:flex gap-1 '>
             <div className='flex flex-col md:flex md:w-80 '>
@@ -20,7 +19,6 @@ export default function Page() {
            <BarChart/> 
            <RadialChart/>
         </div>
-        </secton>
         </>
     );
   }

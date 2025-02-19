@@ -26,7 +26,7 @@ export default function LineChart() {
     datasets: [
       {
         label: 'Total Revenue',
-        backgroundColor: 'rgba(49, 130, 206, 0.2)', // Semi-transparent blue
+        backgroundColor: 'rgba(58, 126, 161, 0.2)', // Semi-transparent blue
         borderColor: '#168DBC',
         pointRadius: 0, 
         pointHoverRadius: 0,
@@ -35,7 +35,7 @@ export default function LineChart() {
       },
       {
         label: 'Monthly Subscription',
-        backgroundColor: 'rgba(237, 242, 247, 0.2)', 
+        backgroundColor: 'rgba(3, 252, 102, 0.2)', 
         borderColor: '#00BFA6',
         pointRadius: 0, 
         pointHoverRadius: 0,
@@ -44,7 +44,7 @@ export default function LineChart() {
       },
       {
         label: 'Yearly Subscription',
-        backgroundColor: 'rgba(237, 242, 247, 0.2)', 
+        backgroundColor: 'rgba(22, 141, 188, 0.2)', 
         borderColor: '#3A7EA1',
         pointRadius: 0, 
         pointHoverRadius: 0,
@@ -63,8 +63,8 @@ export default function LineChart() {
             position: 'top',
             labels: {
               color: 'black',
-              usePointStyle: true,  // Enables custom point style
-              pointStyle: 'circle', // Changes legend icon to filled circle
+              usePointStyle: true, 
+              pointStyle: 'circle',
               padding: 20,
              
             },
@@ -73,7 +73,7 @@ export default function LineChart() {
       
       decimation: {
         enabled: true, // Enable automatic data optimization
-        algorithm: 'lttb', // Largest-Triangle-Three-Buckets (good for large datasets)
+        algorithm: 'lttb', // Largest-Triangle-Three-Buckets
       },
     },
     scales: {
@@ -93,7 +93,7 @@ export default function LineChart() {
 
   return (
     <div className=" m-2 p-6 border-2 rounded ">
-      <div className="relative w-[600px] h-[350px]">
+      <div className="relative w-[450px] md:w-[600px] h-[350px]">
         <Line data={data} options={options} />
       </div>
     </div>

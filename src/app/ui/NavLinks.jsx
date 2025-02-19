@@ -12,15 +12,15 @@ import clsx from 'clsx';
 // Depending on the size of the application, this would be stored in a database.
 const links = [
     // { name: 'Dashboard', href: '/dashboard', icon: HiOutlineSquares2X2 },
-  { name: 'Users', href: '/dashboard', icon: HiOutlineUsers },
+  { name: 'Users', href: '/dashboard/users', icon: HiOutlineUsers },
   {
     name: 'Admins',
-    href: '/dashboard',
+    href: '/dashboard/admins',
     icon: HiOutlineUsers,
   },
-  { name: 'Subscriptions', href: '/dashboard', icon: LuLaptopMinimalCheck },
-  { name: 'Engagement Metrics', href: '/dashboard', icon: PiUserCirclePlus  },
-  { name: 'Support & Queries', href: '/dashboard', icon: TbMessageQuestion  },
+  { name: 'Subscriptions', href: '/dashboard/subscription', icon: LuLaptopMinimalCheck },
+  { name: 'Engagement Metrics', href: '/dashboard/engagement', icon: PiUserCirclePlus  },
+  { name: 'Support & Queries', href: '/dashboard/support', icon: TbMessageQuestion  },
 
 
 
@@ -33,14 +33,15 @@ export default function NavLinks() {
     <>
       {links.map((link) => {
         const LinkIcon = link.icon;
+        const isActive = pathname.startsWith(link.href);
         return (
           <Link
             key={link.name}
             href={link.href}
             className={clsx(
-                ' flex p-4 text-xl bg-white text-slate-400 h-[48px] grow items-center justify-center gap-2 rounded-md font-medium hover:bg-sky-100 hover:text-[#00BFA6] md:flex-none md:justify-start md:p-2 md:px-3',
+                'm-2 flex p-4 text-xl bg-white text-slate-400 h-[48px] grow items-center justify-center gap-2 rounded-md font-medium hover:bg-sky-100 hover:text-[#00BFA6] md:flex-none md:justify-start md:p-2 md:px-3',
                 {
-                  'bg-sky-100 text-[#00BFA6]': pathname === link.href,
+                  'bg-[#00BFA6] text-[#00BFA6] shadow-md': isActive, 
                 },
               )}             >
             <LinkIcon className="md:my-1 md:mr-2 w-6" />
