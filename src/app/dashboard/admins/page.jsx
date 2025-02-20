@@ -1,7 +1,8 @@
-"use client"
+'use client'
+
 import AdminDialog from "@/app/ui/AdminDialog";
 import TableAdmin from "@/app/ui/TableAdmin";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 export default function Admins(){
         const [isDialogOpen, setIsDialogOpen] = useState(true);
@@ -19,7 +20,10 @@ export default function Admins(){
             </div>
             
             <div>
+            <Suspense fallback={<div>Loading admins...</div>}>
                 <TableAdmin/>
+            </Suspense>
+                
             </div>
         </div>
         </>

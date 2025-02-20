@@ -7,10 +7,16 @@ import OptionsMenu from './OptionsMenu';
 import { fetchUsers } from '@/app/lib/api';
 
 export default function TableUsers() {
-  const [users, setUsers] = useState([]); // Store users from API
+
+  // const users=await fetchUsers({
+  //   next:{
+  //     revalidate:60,
+  //   },
+  // });
+   const [users, setUsers] = useState([]); // Store users from API
   const [searchQuery, setSearchQuery] = useState(''); // Search input state
 
-  // Fetch users from API when component mounts
+  // // Fetch users from API when component mounts
   useEffect(() => {
     async function loadUsers() {
       try {
@@ -57,13 +63,13 @@ export default function TableUsers() {
                     <tr key={user.id} className="border-b text-sm">
                       <td className="py-3 pl-6">{user.name}</td>
                       <td className="px-3 py-3">{user.email}</td>
-                      <td className="px-3 py-3">{user.signup}</td>
+                      <td className="px-3 py-3">{user.duration}</td>
                       <td className="px-3 py-3">{user.lastlogin}</td>
                       <td className="px-3 py-3">
                         <UserStatus status={user.status} />
                       </td>
                       <td className="px-3 py-3 text-right">
-                        <OptionsMenu />
+                        <OptionsMenu />     
                       </td>
                     </tr>
                   ))

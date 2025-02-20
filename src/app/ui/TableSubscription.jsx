@@ -6,10 +6,11 @@ import OptionsMenu from './OptionsMenu';
 import { fetchSubscriptions } from '../lib/subscriptionApi';
 
 export default function TableUsers() {
+    // const subscription =await fetchSubscriptions()
   const [subscription, setSubscription] = useState([]); // Store users from API
   const [searchQuery, setSearchQuery] = useState(''); // Search input state
 
-  // Fetch users from API when component mounts
+ // Fetch users from API when component mounts
   useEffect(() => {
     async function loadSubscription() {
       try {
@@ -22,7 +23,7 @@ export default function TableUsers() {
     loadSubscription();
   }, []);
 
-  // Filter users based on search query (name or email)
+  //Filter users based on search query (name or email)
   const filteredSubscription = subscription.filter(subscription =>
     subscription.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     subscription.email.toLowerCase().includes(searchQuery.toLowerCase())
@@ -31,9 +32,9 @@ export default function TableUsers() {
   return (
     <div className="mt-6">
       {/* Search Bar */}
-      <div className="mb-4 ">
+      {/* <div className="mb-4 ">
         <Search onSearch={setSearchQuery} />
-      </div>
+      </div> */}
 
       {/* Users Table */}
       <div className="flow-root">
@@ -66,7 +67,7 @@ export default function TableUsers() {
                 ) : (
                   <tr>
                     <td colSpan="6" className="py-4 text-center text-gray-500">
-                      No users found.
+                      No Subscription found.
                     </td>
                   </tr>
                 )}

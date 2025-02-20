@@ -5,11 +5,13 @@ import Search from './Search';
 import OptionsMenu from './OptionsMenu';
 import { fetchAdmins } from '../lib/adminApi';
 
-export default function TableUsers() {
+export default function TableAdmins() {
+      // const admins=await fetchAdmins();
+    
   const [admins, setAdmins] = useState([]); // Store users from API
   const [searchQuery, setSearchQuery] = useState(''); // Search input state
 
-  // Fetch users from API when component mounts
+  //Fetch users from API when component mounts
   useEffect(() => {
     async function loadAdmins() {
       try {
@@ -22,7 +24,7 @@ export default function TableUsers() {
     loadAdmins();
   }, []);
 
-  // Filter users based on search query (name or email)
+  //Filter users based on search query (name or email)
   const filteredAdmins = admins.filter(admin =>
     admin.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     admin.email.toLowerCase().includes(searchQuery.toLowerCase())
@@ -31,9 +33,9 @@ export default function TableUsers() {
   return (
     <div className="mt-6">
       {/* Search Bar */}
-      <div className="mb-4 ">
+      {/* <div className="mb-4 ">
         <Search onSearch={setSearchQuery} />
-      </div>
+      </div> */}
 
       {/* Users Table */}
       <div className="flow-root">
@@ -66,7 +68,7 @@ export default function TableUsers() {
                 ) : (
                   <tr>
                     <td colSpan="6" className="py-4 text-center text-gray-500">
-                      No users found.
+                      No admins found.
                     </td>
                   </tr>
                 )}

@@ -2,10 +2,11 @@
 import ExportButton from "@/app/ui/ExportButton";
 import FilterButton from "@/app/ui/FilterButton";
 import TableSubscription from "@/app/ui/TableSubscription";
+import { Suspense } from "react";
 import { useState } from "react";
 
 export default function Subscription(){
-        const [isDialogOpen, setIsDialogOpen] = useState(true);
+     const [isDialogOpen, setIsDialogOpen] = useState(true);
     
     return(
         <>
@@ -24,7 +25,9 @@ export default function Subscription(){
             </div>
             
             <div>
+            <Suspense fallback={<div>Loading subscriptions...</div>}>
                 <TableSubscription/>
+            </Suspense>    
             </div>
         </div>
         </>

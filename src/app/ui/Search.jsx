@@ -4,7 +4,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 
 export default function Search({ onSearch }) {
-  const [searchQuery, setSearchQuery] = useState('');
+   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e) => {
     const value = e.target.value;

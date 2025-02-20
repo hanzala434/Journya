@@ -1,12 +1,12 @@
-"use client"
+'use client'
 import Search from "@/app/ui/Search";
 import TableUsers from "@/app/ui/TableUsers";
 import UserDialog from "@/app/ui/UserDialog";
+import { Suspense } from "react";
 import { useState } from "react";
 
 export default function Users(){
     const [isDialogOpen, setIsDialogOpen] = useState(true);
- 
 
     return(
         <>
@@ -24,7 +24,9 @@ export default function Users(){
             </div>
             
             <div>
+                <Suspense fallback={<div>Loading users...</div>}>
                 <TableUsers/>
+                </Suspense>
             </div>
         </div>
         </>

@@ -8,8 +8,6 @@ import clsx from 'clsx';
 const links = [
     { name: 'Compliance', href: '/dashboard', icon: AiOutlineSafetyCertificate },
 
-
-
 ];
 
 export default function SecurityLinks() {
