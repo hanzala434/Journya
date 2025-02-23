@@ -22,30 +22,33 @@ export default function SideBar(){
         alt="journya-logo"/>
       </Link>
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-        <div className='mb-4 md:block hidden'>
+        <div className=' md:block hidden'>
         <h1 className='text-slate-400 font-medium text-xl mb-2 '>Overview</h1>
-        <Link href='/dashboard' className='text-xl flex justify-center font-medium bg-[#00BFA6] bg-opacity-10 p-4 border-l-2 border-[#00BFA6] rounded text-[#00BFA6] '>
-        <h2 className='flex my-1'>
-        <HiOutlineSquares2X2 className='mr-4 text-3xl'/>Dashboard</h2>
+        <Link
+            href='/dashboard'
+            className='m-2 flex p-4 text-xl bg-opacity-20 bg-[#00BFA6] text-[#00BFA6] h-[48px] grow items-center justify-center gap-2 rounded-md font-mediumy md:flex-none md:justify-start md:p-2 md:px-3'
+            >
+            <HiOutlineSquares2X2 className="md:my-1 md:mr-2 w-6" />
+            <p className="hidden md:block">Dashboard</p>
         </Link>
         </div>
         <div className='flex flex-col'>
 
-        <div className='md:my-8 py-4 md:border-t-2'>
+        <div className='md:my-1 py-4 md:border-t-2'>
         <h1 className='text-slate-400 font-medium text-xl mb-2 '>User Management</h1>
         <div className='flex md:flex-col'>
         <NavLinks />
         </div>
         </div>
 
-        <div className='md:my-8 py-4 md:border-t-2'>
+        <div className='md:my-1 py-4 md:border-t-2'>
         <h1 className='text-slate-400 font-medium text-xl mb-2 '>Financial Status</h1>
         <div className='flex md:flex-col'>
         <FinancialLinks />
         </div>
         </div>
 
-        <div className='md:my-8 py-4 md:border-t-2'>
+        <div className='md:my-1 py-4 md:border-t-2'>
         <h1 className='text-slate-400 font-medium text-xl mb-2 '>Security</h1>
         <div className='flex md:flex-col'>
         <SecurityLinks />

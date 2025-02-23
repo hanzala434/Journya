@@ -8,15 +8,14 @@ import clsx from 'clsx';
 
 
 const links = [
-    { name: 'Total Revenue', href: '/dashboard', figures:'220K', icon: PiCoinsThin },
-  { name: 'Subscribers', href: '/dashboard',figures:'220', icon: HiOutlineUsers },
-  { name: 'Active Tickets', href: '/dashboard',figures:'220', icon: IoTicketOutline },
+    { name: 'Up Time', href: '/dashboard', figures:'220',timeUnit:'hrs', icon: HiOutlineUsers },
+  { name: 'Down Time', href: '/dashboard',figures:'2',timeUnit:'hrs', icon: HiOutlineUsers },
 
 
 
 ];
 
-export default function FinancialLinks() {
+export default function OperationalBar() {
   const pathname=usePathname();
 
   return (
@@ -38,7 +37,12 @@ export default function FinancialLinks() {
             <LinkIcon className="bg-[#00BFA6] text-[#00BFA6] rounded-full bg-opacity-10 md:my-1 md:mr-2 text-6xl p-1" />
             <div>
             <p className="md:block text-sm">{link.name}</p>
-            <p className="text-center text-black">{link.figures}</p>
+            <div className="flex">
+
+            <p className="text-2xl text-black">{link.figures}</p>
+            <p className=" ml-1 mt-2 text-slate-400 text-sm">{link.timeUnit}</p>
+            </div>
+
             </div>
           </Link>
         );

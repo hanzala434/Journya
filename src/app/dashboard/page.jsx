@@ -7,11 +7,11 @@ export default function Page() {
     return(
         <>
 
-        <div className='md:flex gap-1 '>
-            <div className='flex flex-col md:flex md:w-80 '>
+        <div className='md:flex gap-1 min-h-[500px]'>
+            <div className='flex flex-col mt-10 md:flex md:w-80 h-full '>
                 <TotalBar/>
             </div>
-            <div className='md:py-10  '>
+            <div className='md:py-10 h-full w-full '>
                 <DashboardGraph/>
             </div>
         </div>

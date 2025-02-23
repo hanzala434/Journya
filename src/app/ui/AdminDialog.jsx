@@ -8,9 +8,51 @@ export default function AdminDialog(){
       
     });
 
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError("");
+
+        try {
+            const response = await fetch("/api/admin/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    name: formData.email.split("@")[0], // Extract name from email
+                    signup: new Date().toISOString(), // Set last login timestamp
+                    phone: "", 
+
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to add user");
+            }
+
+            const data = await response.json();
+            console.log("Admin added:", data);
+
+            setIsOpen(false);
+            setFormData({ email: ""}); 
+
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return(
         <>
         <div className="relative ">
@@ -34,7 +76,7 @@ export default function AdminDialog(){
 
             <h2 className="text-2xl font-medium mb-4 text-center">Add User</h2>
 
-            <form className="p-4">
+            <form onSubmit={handleSubmit} className="p-4">
               <div className="mb-3">
                 <label className="block text-sm font-medium text-gray-700">
                   Email
@@ -51,7 +93,7 @@ export default function AdminDialog(){
 
             <div className="flex justify-center">
               <button
-                type="button"
+                type="submit"
                 className=" w-1/2 bg-[#00BFA6] text-white py-2 rounded-md font-medium hover:bg-[#009f8a]"
               >
                 Send Link

@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 
 const links = [
-    { name: 'Compliance', href: '/dashboard', icon: AiOutlineSafetyCertificate },
+    { name: 'Compliance', href: '/dashboard/compliance', icon: AiOutlineSafetyCertificate },
 
 ];
 

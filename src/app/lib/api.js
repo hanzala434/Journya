@@ -16,20 +16,19 @@ export async function fetchUsers() {
 //   return user;
 // }
 
-// // Create a new user
-// export async function createUser({ name, email, status }) {
-//   const newUser = {
-//     id: (users.length + 1).toString(),
-//     name,
-//     email,
-//     signup: new Date().toLocaleString(),
-//     lastlogin: new Date().toLocaleString(),
-//     status,
-//   };
+// Create a new user
+export async function createUser({ name, email, status }) {
+  const newUser = {
+    name,
+    email,
+    duration: new Date().toLocaleString(),
+    lastlogin: new Date().toLocaleString(),
+    status,
+  };
 
-//   users.push(newUser);
-//   return newUser;
-// }
+  users.push(newUser);
+  return newUser;
+}
 
 // // Update an existing user
 // export async function updateUser(id, updatedData) {
@@ -55,7 +54,24 @@ export async function fetchUsers() {
 // }
 
 // Fetch paginated users with search
-export async function fetchFilteredUsers(query) {
+
+export async function fetchFilteredUsers(searchQuery = "") {
+  try {
+    const response = await fetch(`http://localhost:3000/api/users/search?query=${searchQuery}`);
+    
+    if (!response.ok) {
+        throw new Error("Failed to fetch users");
+    }
+
+    const users = await response.json();
+    return users;
+} catch (error) {
+    console.error("Error fetching users:", error);
+    return [];
+}
+}
+
+// export async function fetchFilteredUsers(query) {
   // const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   // const filteredUsers = users.filter(
@@ -66,11 +82,11 @@ export async function fetchFilteredUsers(query) {
   // );
 
   // const paginatedUsers = filteredUsers.slice(offset, offset + ITEMS_PER_PAGE);
-  const res = await fetch(`/api/users?query=${query}`);
-  // if (!res.ok) throw new Error("Failed to fetch users");
-  const data = await res.json();
-  return data;
-}
+//   const res = await fetch(`/api/users?query=${query}`);
+//   // if (!res.ok) throw new Error("Failed to fetch users");
+//   const data = await res.json();
+//   return data;
+// }
 
 // // Fetch total pages for pagination
 // export async function fetchUsersPages(query) {

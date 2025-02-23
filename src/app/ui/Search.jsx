@@ -20,7 +20,7 @@ export default function Search({ onSearch }) {
       <input
         type="text"
         id="search"
-        className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500"
+        className="peer block w-80 rounded-full border border-gray-300 py-[9px] pl-10 text-sm outline-none placeholder:text-gray-500"
         placeholder="Search users..."
         value={searchQuery}
         onChange={handleSearch}

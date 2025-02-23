@@ -1,0 +1,15 @@
+[
+    { "id": "1",
+      "name": "John Smith",
+      "email": "JohnSmith@gmail.com",
+      "phone": "+93 2948942" ,
+      "signup": "12/11/2024 7:23"},
+
+    { 
+        "id": "2",
+        "name": "Hanzala", 
+        "email": "hanzala@gmail.com", 
+        "phone": "+93 2948942",
+        "signup": "12/11/2024 7:23"}
+  
+]

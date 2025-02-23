@@ -6,43 +6,45 @@ import UserStatus from './UserStatus';
 import OptionsMenu from './OptionsMenu';
 import { fetchUsers } from '@/app/lib/api';
 
-export default function TableUsers() {
-
+export default function TableUsers({searchQuery}) {
+  // const searchQuery = searchParams?.query || "";
   // const users=await fetchUsers({
   //   next:{
   //     revalidate:60,
   //   },
   // });
+
    const [users, setUsers] = useState([]); // Store users from API
-  const [searchQuery, setSearchQuery] = useState(''); // Search input state
-
-  // // Fetch users from API when component mounts
-  useEffect(() => {
-    async function loadUsers() {
-      try {
-        const data = await fetchUsers();
-        setUsers(data);
-      } catch (error) {
-        console.error('Error fetching users:', error);
+  
+    //Fetch users from API when component mounts
+    useEffect(() => {
+      async function loadUsers() {
+        try {
+          const data = await fetchUsers();
+          setUsers(data);
+        } catch (error) {
+          console.error('Error fetching users:', error);
+        }
       }
-    }
-    loadUsers();
-  }, []);
-
-  // Filter users based on search query (name or email)
-  const filteredUsers = users.filter(user =>
-    user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      loadUsers();
+    }, []);
+  
+    //Filter users based on search query (name or email)
+    const filteredUsers = users.filter(user =>
+      user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  
 
   return (
     <div className="mt-6">
-      {/* Search Bar */}
+
       <div className="mb-4 ">
-        <Search onSearch={setSearchQuery} />
+        {/* <Search onSearch={setSearchQuery} /> */}
+        {/* <SearchBar /> */}
+
       </div>
 
-      {/* Users Table */}
       <div className="flow-root">
         <div className="inline-block min-w-full align-middle">
           <div className="rounded-lg p-2">

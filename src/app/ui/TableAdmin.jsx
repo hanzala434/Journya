@@ -5,11 +5,11 @@ import Search from './Search';
 import OptionsMenu from './OptionsMenu';
 import { fetchAdmins } from '../lib/adminApi';
 
-export default function TableAdmins() {
+export default function TableAdmins({searchQuery}) {
       // const admins=await fetchAdmins();
     
   const [admins, setAdmins] = useState([]); // Store users from API
-  const [searchQuery, setSearchQuery] = useState(''); // Search input state
+  // const [searchQuery, setSearchQuery] = useState(''); // Search input state
 
   //Fetch users from API when component mounts
   useEffect(() => {
@@ -32,10 +32,7 @@ export default function TableAdmins() {
 
   return (
     <div className="mt-6">
-      {/* Search Bar */}
-      {/* <div className="mb-4 ">
-        <Search onSearch={setSearchQuery} />
-      </div> */}
+ 
 
       {/* Users Table */}
       <div className="flow-root">

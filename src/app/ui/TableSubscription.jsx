@@ -5,7 +5,7 @@ import Search from './Search';
 import OptionsMenu from './OptionsMenu';
 import { fetchSubscriptions } from '../lib/subscriptionApi';
 
-export default function TableUsers() {
+export default function TableSubscription() {
     // const subscription =await fetchSubscriptions()
   const [subscription, setSubscription] = useState([]); // Store users from API
   const [searchQuery, setSearchQuery] = useState(''); // Search input state

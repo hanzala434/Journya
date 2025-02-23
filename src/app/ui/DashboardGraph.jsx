@@ -79,6 +79,15 @@ export default function LineChart() {
     scales: {
       x: {
         grid: { display: false },
+        title: {
+          display: true,
+          text: "Months", // X-axis label
+          color: "black",
+          font: {
+            size: 14,
+            weight: "bold",
+          },
+        },
       },
       y: {
         ticks: { 
@@ -87,13 +96,22 @@ export default function LineChart() {
         grid: { color: '#f4f4f4' },
         min: 0, 
         max: 1000, 
+        title: {
+          display: true,
+          text: "Revenue", // X-axis label
+          color: "black",
+          font: {
+            size: 14,
+            weight: "bold",
+          },
+        },
     },
     },
   };
 
   return (
     <div className=" m-2 p-6 border-2 rounded ">
-      <div className="relative w-[450px] md:w-[600px] h-[350px]">
+      <div className="relative w-[450px] md:w-full h-[350px]">
         <Line data={data} options={options} />
       </div>
     </div>

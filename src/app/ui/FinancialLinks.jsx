@@ -7,11 +7,8 @@ import clsx from 'clsx';
 
 
 const links = [
-    { name: 'Finacial Overview', href: '/dashboard', icon: IoStatsChartOutline },
-  { name: 'Operational Metrics', href: '/dashboard', icon: TbDeviceDesktopCheck },
-
-
-
+    { name: 'Finacial Overview', href: '/dashboard/financial', icon: IoStatsChartOutline },
+  { name: 'Operational Metrics', href: '/dashboard/operational', icon: TbDeviceDesktopCheck },
 ];
 
 export default function FinancialLinks() {

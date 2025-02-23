@@ -1,10 +1,11 @@
+'use client'
 import { HiOutlineUsers } from "react-icons/hi2";
 import { LuLaptopMinimalCheck } from "react-icons/lu";
 import { PiUserCirclePlus } from "react-icons/pi";
 import { TbMessageQuestion } from "react-icons/tb";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 import Link from 'next/link';
-// import { usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
 // Map of links to display in the side navigation.
@@ -25,22 +26,22 @@ const links = [
 ];
 
 export default function NavLinks() {
-//   const pathname=usePathname();
+  const pathname=usePathname();
 
   return (
     <>
       {links.map((link) => {
         const LinkIcon = link.icon;
-        // const isActive = pathname.startsWith(link.href);
+        const isActive = pathname.startsWith(link.href);
         return (
           <Link
             key={link.name}
             href={link.href}
             className={clsx(
-                'm-2 flex p-4 text-xl bg-white text-slate-400 h-[48px] grow items-center justify-center gap-2 rounded-md font-medium hover:bg-sky-100 hover:text-[#00BFA6] md:flex-none md:justify-start md:p-2 md:px-3',
-                // {
-                //   'bg-[#00BFA6] text-[#00BFA6] shadow-md': isActive, 
-                // },
+                'm-2 flex p-4 text-xl bg-white text-slate-400 h-[48px] grow items-center justify-center gap-2 rounded-md hover:bg-sky-100 hover:text-[#00BFA6] md:flex-none md:justify-start md:p-2 md:px-3',
+                {
+                  'bg-green-400 bg-opacity-20 text-[#00BFA6] shadow-md': isActive, 
+                },
               )}             >
             <LinkIcon className="md:my-1 md:mr-2 w-6" />
             <p className="hidden md:block">{link.name}</p>
