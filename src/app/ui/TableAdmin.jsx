@@ -57,8 +57,8 @@ export default function TableAdmins({searchQuery}) {
                       <td className="px-3 py-3">{admin.phone}</td>
                       <td className="px-3 py-3">{admin.signup}</td>
                     
-                      <td>
-                        <OptionsMenu />
+                      <td className="px-3 py-3">
+                        <OptionsMenu className='text-left' />
                       </td>
                     </tr>
                   ))

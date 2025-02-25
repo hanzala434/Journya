@@ -5,23 +5,21 @@ import Search from './Search';
 import OptionsMenu from './OptionsMenu';
 import { fetchSubscriptions } from '../lib/subscriptionApi';
 
-export default function TableSubscription() {
+export default function TableSubscription({searchQuery}) {
     // const subscription =await fetchSubscriptions()
-  const [subscription, setSubscription] = useState([]); // Store users from API
-  const [searchQuery, setSearchQuery] = useState(''); // Search input state
-
- // Fetch users from API when component mounts
-  useEffect(() => {
-    async function loadSubscription() {
-      try {
-        const data = await fetchSubscriptions();
-        setSubscription(data);
-      } catch (error) {
-        console.error('Error fetching subscription:', error);
+   const [subscription, setSubscription] = useState([]); // Store users from API
+  
+    useEffect(() => {
+      async function loadSubscription() {
+        try {
+          const data = await fetchSubscriptions();
+          setSubscription(data);
+        } catch (error) {
+          console.error('Error fetching users:', error);
+        }
       }
-    }
-    loadSubscription();
-  }, []);
+      loadSubscription();
+    }, []);
 
   //Filter users based on search query (name or email)
   const filteredSubscription = subscription.filter(subscription =>

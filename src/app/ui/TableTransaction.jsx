@@ -29,7 +29,7 @@ export default function TableTransaction() {
   );
 
   return (
-    <div className="mt-6">
+    <div className="mt-2">
 
       {/* Users Table */}
       <div className="flow-root">

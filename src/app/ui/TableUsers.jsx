@@ -1,35 +1,28 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Search from './Search';
 import UserStatus from './UserStatus';
 import OptionsMenu from './OptionsMenu';
 import { fetchUsers } from '@/app/lib/api';
 
-export default function TableUsers({searchQuery}) {
-  // const searchQuery = searchParams?.query || "";
-  // const users=await fetchUsers({
-  //   next:{
-  //     revalidate:60,
-  //   },
-  // });
+export default function TableUsers({searchQuery,refresh }) {
 
-   const [users, setUsers] = useState([]); // Store users from API
+
+   const [users, setUsers] = useState([]); 
+
+   const refreshUsers = async () => {
+    try {
+      const data = await fetchUsers();
+      setUsers(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  };
   
-    //Fetch users from API when component mounts
     useEffect(() => {
-      async function loadUsers() {
-        try {
-          const data = await fetchUsers();
-          setUsers(data);
-        } catch (error) {
-          console.error('Error fetching users:', error);
-        }
-      }
-      loadUsers();
-    }, []);
+      refreshUsers();
+    }, [refresh ]);
   
-    //Filter users based on search query (name or email)
     const filteredUsers = users.filter(user =>
       user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.email.toLowerCase().includes(searchQuery.toLowerCase())
@@ -39,11 +32,6 @@ export default function TableUsers({searchQuery}) {
   return (
     <div className="mt-6">
 
-      <div className="mb-4 ">
-        {/* <Search onSearch={setSearchQuery} /> */}
-        {/* <SearchBar /> */}
-
-      </div>
 
       <div className="flow-root">
         <div className="inline-block min-w-full align-middle">
@@ -70,8 +58,8 @@ export default function TableUsers({searchQuery}) {
                       <td className="px-3 py-3">
                         <UserStatus status={user.status} />
                       </td>
-                      <td className="px-3 py-3 text-right">
-                        <OptionsMenu />     
+                      <td className="px-3 py-3 text-left">
+                        <OptionsMenu user={user} refreshUsers={refreshUsers} />     
                       </td>
                     </tr>
                   ))

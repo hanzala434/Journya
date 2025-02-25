@@ -1,9 +1,12 @@
+'use client'
 import TotalBar from '@/app/ui/TotalBar'
 import DashboardGraph from '../ui/DashboardGraph';
 import graph2 from '@/public/graph2.png'
 import BarChart from '../ui/BarChart';
 import RadialChart from '../ui/RadialChart';
+import { useSession, signIn, signOut } from "next-auth/react"
 export default function Page() {
+    
     return(
         <>
 
@@ -20,5 +23,6 @@ export default function Page() {
            <RadialChart/>
         </div>
         </>
-    );
+
+)
   }

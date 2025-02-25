@@ -8,15 +8,15 @@ import clsx from 'clsx';
 
 
 const links = [
-    { name: 'Total Revenue', href: '/dashboard', figures:'220K', icon: PiCoinsThin },
-  { name: 'Subscribers', href: '/dashboard',figures:'220', icon: HiOutlineUsers },
-  { name: 'Active Tickets', href: '/dashboard',figures:'220', icon: IoTicketOutline },
+    { name: 'Total Tickets', href: '/dashboard', figures:'220', icon: IoTicketOutline },
+  { name: 'Received Ticket', href: '/dashboard',figures:'220', icon: IoTicketOutline },
+  { name: 'Pending Tickets', href: '/dashboard',figures:'220', icon: IoTicketOutline },
 
 
 
 ];
 
-export default function TotalBar() {
+export default function SupportBar() {
   const pathname=usePathname();
 
   return (

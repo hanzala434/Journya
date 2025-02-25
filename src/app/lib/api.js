@@ -17,18 +17,61 @@ export async function fetchUsers() {
 // }
 
 // Create a new user
-export async function createUser({ name, email, status }) {
-  const newUser = {
-    name,
-    email,
-    duration: new Date().toLocaleString(),
-    lastlogin: new Date().toLocaleString(),
-    status,
-  };
+export async function createUser(userData) {
+  try {
+    const response = await fetch("http://localhost:3000/api/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
 
-  users.push(newUser);
-  return newUser;
+    if (!response.ok) {
+      throw new Error("Failed to create user");
+    }
+
+    const newUser = await response.json();
+    return newUser;
+  } catch (error) {
+    console.error("Error creating user:", error);
+    return null;
+  }
 }
+
+// ✅ Delete a user by ID
+export async function deleteUser(id) {
+  const response = await fetch("http://localhost:3000/api/users", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id })
+  });
+
+  return await response.json();
+}
+
+// ✅ Update user status (Activate/Deactivate)
+export async function updateUserStatus(id, status) {
+  const response = await fetch("http://localhost:3000/api/users", {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id, status })
+  });
+
+  return await response.json();
+}
+
+// ✅ Reset user password
+export async function resetUserPassword(id, newPassword) {
+  const response = await fetch("http://localhost:3000/api/users", {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id, newPassword })
+  });
+
+  return await response.json();
+}
+
 
 // // Update an existing user
 // export async function updateUser(id, updatedData) {

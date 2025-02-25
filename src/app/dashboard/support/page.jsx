@@ -1,5 +1,5 @@
+import SupportBar from '@/app/ui/SupportBar'
 import TableQuery from '@/app/ui/TableQuery'
-import TotalBar from '@/app/ui/TotalBar'
 
 export default function Support(){
     return(
@@ -9,7 +9,7 @@ export default function Support(){
             <h2  className='py-2 text-xl text-slate-600'>Overview</h2>
             <div>
                 <div className="flex">
-                    <TotalBar/>
+                    <SupportBar/>
                 </div>
                 <div>
                     <TableQuery/>

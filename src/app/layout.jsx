@@ -1,5 +1,6 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import SessionWraper from "./ui/SessionWraper";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -18,8 +19,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${poppins.variable} antialiased`}
       >
-        {children}
-      </body>
+               <SessionWraper>
+               {children}
+        </SessionWraper> 
+               </body>
     </html>
   );
 }

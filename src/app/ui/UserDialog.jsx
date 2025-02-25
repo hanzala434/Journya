@@ -1,15 +1,22 @@
 "use client"
 import { useState } from "react";
+import { createUser, fetchUsers } from "../lib/api";
 
 export default function UserDialog(){
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({
-      email: "",
-      plan: "Monthly",
-      duration: "",
-    });
+        name: "",
+        duration: "",
+        plan: "",
+        email: "",
+        lastlogin: new Date().toISOString(),
+        status: "active",
+      });
+    
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [message, setMessage] = useState(null);
+
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,38 +25,33 @@ export default function UserDialog(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        setError("");
+        setMessage(null);
 
-        try {
-            const response = await fetch("/api/users/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    ...formData,
-                    name: formData.email.split("@")[0], // Extract name from email
-                    lastlogin: new Date().toISOString(), // Set last login timestamp
-                    status: "active", // Default status
-                }),
-            });
+        const extractedName = formData.email.split("@")[0];
 
-            if (!response.ok) {
-                throw new Error("Failed to add user");
-            }
+        const updatedFormData = {
+            ...formData,
+            name: extractedName, // Ensure name is updated
+        };
 
-            const data = await response.json();
-            console.log("User added:", data);
-
-            setIsOpen(false); // Close dialog on success
-            setFormData({ email: "", plan: "Monthly", duration: "" }); // Reset form
-
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
+        const result = await createUser(updatedFormData);
+    
+        if (result) {
+          setMessage({ type: "success", text: "User created successfully!" });
+          setFormData({
+            name: "",
+            duration: "",
+            plan: "",
+            email: "",
+            lastlogin: new Date().toISOString(),
+            status: "Active",
+          });
+        } else {
+          setMessage({ type: "error", text: "Failed to create user." });
         }
-    };
+    
+        setLoading(false);
+      };
 
     return(
         <>

@@ -8,15 +8,13 @@ import clsx from 'clsx';
 
 
 const links = [
-    { name: 'Total Revenue', href: '/dashboard', figures:'220K', icon: PiCoinsThin },
-  { name: 'Subscribers', href: '/dashboard',figures:'220', icon: HiOutlineUsers },
-  { name: 'Active Tickets', href: '/dashboard',figures:'220', icon: IoTicketOutline },
-
-
+    { name: 'Total Users', href: '/dashboard', figures:'440', icon: HiOutlineUsers },
+  { name: 'Active Users', href: '/dashboard',figures:'220', icon: HiOutlineUsers },
+  { name: 'Inactive Users', href: '/dashboard',figures:'220', icon: HiOutlineUsers },
 
 ];
 
-export default function TotalBar() {
+export default function Engage() {
   const pathname=usePathname();
 
   return (
@@ -28,12 +26,7 @@ export default function TotalBar() {
           <Link
             key={link.name}
             href={link.href}
-            className={clsx(
-                'md:h-[123px] md:w-60 m-2 flex p-4 text-xl text-slate-400 grow items-center justify-center gap-2 rounded-md bg-white border-2 font-medium hover:bg-sky-100 hover:text-[#00BFA6] md:flex-none md:justify-center md:p-2 md:px-3',
-                {
-                  'bg-sky-100 text-[#00BFA6]': pathname === link.href,
-                },
-              )}   
+            className='md:h-[123px] md:w-60 m-2 flex p-4 text-xl text-slate-400 grow items-center justify-center gap-2 rounded-md bg-white border-2 font-medium hover:bg-sky-100 hover:text-[#00BFA6] md:flex-none md:justify-center md:p-2 md:px-3'
           >
             <LinkIcon className="bg-[#00BFA6] text-[#00BFA6] rounded-full bg-opacity-10 md:my-1 md:mr-2 text-6xl p-1" />
             <div>

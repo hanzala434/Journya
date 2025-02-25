@@ -1,6 +1,5 @@
 'use client'
 import Search from "@/app/ui/Search";
-import SearchBar from "@/app/ui/SearchBar";
 import TableUsers from "@/app/ui/TableUsers";
 import UserDialog from "@/app/ui/UserDialog";
 import { Suspense } from "react";
@@ -9,7 +8,7 @@ import { useState } from "react";
 export default function Users(){
     const [isDialogOpen, setIsDialogOpen] = useState(true);
     const [searchQuery, setSearchQuery] = useState(''); // Search input state
-
+    const [refreshTable, setRefreshTable] = useState(false);
     // const [users, setUsers] = useState([]);
     // const [loading, setLoading] = useState(true);
   
@@ -39,14 +38,16 @@ export default function Users(){
                 {/* <SearchBar getSearchResults={users}/> */}
 
                 <Search placeholder="Search users..." onSearch={setSearchQuery} />
-            {isDialogOpen && <UserDialog onClose={() => setIsDialogOpen(false)} />}
+            {isDialogOpen && ( <UserDialog onClose={
+                () => setIsDialogOpen(false)} 
+                 onUserAdded={() => setRefreshTable(prev => !prev)} />)}
             </div>
             
             </div>
             
             <div>
                 <Suspense fallback={<div>Loading users...</div>}>
-                <TableUsers searchQuery={searchQuery}/>
+                <TableUsers searchQuery={searchQuery} refresh={refreshTable}/>
                 </Suspense>
             </div>
         </div>
