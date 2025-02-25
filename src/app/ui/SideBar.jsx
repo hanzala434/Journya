@@ -1,4 +1,4 @@
-import journya from '@/public/journya.png'
+import journya from '@/app/assets/journya.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { IoLogOutOutline } from "react-icons/io5";
