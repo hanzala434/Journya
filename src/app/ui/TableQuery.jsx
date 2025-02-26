@@ -1,8 +1,22 @@
+"use client"
+import { useEffect, useState } from 'react';
 import { fetchQuerys } from '../lib/supportApi';
 import QueryStatus from './QueryStatus';
 
-export default async function TableQuery() {
-    const query =await fetchQuerys()
+export default function TableQuery() {
+const [query, setQuery] = useState([]);
+  
+    useEffect(() => {
+      async function loadQuery() {
+        try {
+          const data =await fetchQuerys()
+          setQuery(data);
+        } catch (error) {
+          console.error('Error fetching query:', error);
+        }
+      }
+      loadQuery();
+    }, []);
 
   return (
     <div className="mt-6">
