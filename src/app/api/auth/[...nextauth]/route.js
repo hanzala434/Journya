@@ -1,5 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { connectDB } from "@/app/lib/dbConnections";
+import AuthUser from "@/app/lib/models/AuthUser";
+import bcrypt from "bcryptjs";
 
 export const authOptions = {
   providers: [
@@ -10,14 +13,25 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Dummy authentication
-        const user = { id: "1", name: "John Doe", email: "test@example.com", password: "password123" };
+        await connectDB(); 
 
-        if (credentials.email === user.email && credentials.password === user.password) {
-          return user; // Successful login
-        } else {
-          throw new Error("Invalid email or password");
+        // Find user by email
+        const user = await AuthUser.findOne({ email: credentials.email });
+        if (!user) {
+          throw new Error("User not found");
         }
+
+        // Check password using bcrypt
+        const isValidPassword = await bcrypt.compare(credentials.password, user.password);
+        if (!isValidPassword) {
+          throw new Error("Invalid password");
+        }
+
+        return {
+          id: user._id.toString(),
+          name: user.name,
+          email: user.email,
+        };
       },
     }),
   ],

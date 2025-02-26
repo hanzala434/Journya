@@ -48,7 +48,7 @@ export default function TableTransaction() {
               <tbody>
                 {filteredtransaction.length > 0 ? (
                   filteredtransaction.map(transaction => (
-                    <tr key={transaction.id} className="border-b text-sm">
+                    <tr key={transaction._id} className="border-b text-sm">
                       <td className="px-3 py-3">{transaction.name}</td>
                       <td className="px-3 py-3">{transaction.email}</td>
                       <td className="px-3 py-3">{transaction.package}</td>

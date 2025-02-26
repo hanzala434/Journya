@@ -4,7 +4,11 @@ const ITEMS_PER_PAGE = 6;
 
 // Fetch all Compliances
 export async function fetchCompliances() {
-  return Compliance;
+  console.log("NEXTAUTH_URL:", process.env.NEXT_PUBLIC_NEXTAUTH_URL);
+
+  const response=await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/compliance`);
+  const compliance=await response.json();
+  return compliance;
 }
 
 // Fetch a single Compliance by ID

@@ -23,7 +23,7 @@ export default async function TableQuery() {
               <tbody>
                 {query.length > 0 ? (
                   query.map(query => (
-                    <tr key={query.id} className="border-b text-sm">
+                    <tr key={query._id} className="border-b text-sm">
                       <td className="px-3 py-3">{query.ticket_id}</td>
                       <td className="px-3 py-3">{query.issue}</td>
                       <td className="px-3 py-3">{query.subject}</td>

@@ -14,21 +14,21 @@ export default function OptionsMenu({ user, refreshUsers }) {
 
   const handleDelete = async () => {
     setLoading(true);
-    await deleteUser(user.id);
+    await deleteUser(user._id);
     setLoading(false);
     refreshUsers(); // Refresh the user list after deletion
   };
 
   const handleStatusChange = async (newStatus) => {
     setLoading(true);
-    await updateUserStatus(user.id, newStatus);
+    await updateUserStatus(user._id, newStatus);
     setLoading(false);
     refreshUsers(); // Refresh the user list after update
   };
 
   const handlePasswordReset = async () => {
     setLoading(true);
-    await resetUserPassword(user.id, "newpassword123"); // ⚠️ Replace with real password logic
+    await resetUserPassword(user._id, "newpassword123"); // ⚠️ Replace with real password logic
     setLoading(false);
   };
 

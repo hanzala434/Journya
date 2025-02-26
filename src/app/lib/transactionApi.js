@@ -4,7 +4,11 @@ const ITEMS_PER_PAGE = 6;
 
 // Fetch all Transactions
 export async function fetchTransactions() {
-  return Transaction;
+  console.log("NEXTAUTH_URL:", process.env.NEXT_PUBLIC_NEXTAUTH_URL);
+
+  const response=await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/transaction`);
+  const transaction=await response.json();
+  return transaction;
 }
 
 // Fetch a single Transaction by ID

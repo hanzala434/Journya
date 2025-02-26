@@ -4,8 +4,11 @@ const ITEMS_PER_PAGE = 6; // Define items per page for pagination
 
 // Fetch all admins
 export async function fetchAdmins() {
-  return admins;
-}
+  console.log("NEXTAUTH_URL:", process.env.NEXT_PUBLIC_NEXTAUTH_URL);
+
+  const response=await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/admin`);
+  const admin=await response.json();
+  return admin;}
 
 // Fetch a single admin by ID
 export async function fetchAdminById(id) {
@@ -42,12 +45,14 @@ export async function updateAdmin(id, updatedData) {
 
 // Delete an admin
 export async function deleteAdmin(id) {
-  const index = admins.findIndex((admin) => admin.id === id);
-  if (index === -1) throw new Error("Admin not found");
-
-  admins.splice(index, 1);
-  return { message: "Admin deleted successfully" };
-}
+    const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/admin`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id })
+    });
+  
+    return await response.json();
+  }
 
 // Fetch paginated admins with search
 export async function fetchFilteredAdmins(query, currentPage) {

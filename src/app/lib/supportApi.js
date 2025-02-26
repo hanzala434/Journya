@@ -4,7 +4,11 @@ const ITEMS_PER_PAGE = 6;
 
 // Fetch all Querys
 export async function fetchQuerys() {
-  return Query;
+  console.log("NEXTAUTH_URL:", process.env.NEXT_PUBLIC_NEXTAUTH_URL);
+
+  const response=await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/query`);
+  const query=await response.json();
+  return query;
 }
 
 // Fetch a single Query by ID

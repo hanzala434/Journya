@@ -27,7 +27,7 @@ export default async function TableCompliance() {
               <tbody>
                 {compliance.length > 0 ? (
                   compliance.map(compliance => (
-                    <tr key={compliance.id} className="border-b text-sm">
+                    <tr key={compliance._id} className="border-b text-sm">
                       <td className="px-3 py-3">{compliance.email}</td>
                       <td className="px-3 py-3">{compliance.activity}</td>
                       <td className="px-3 py-3">{compliance.device}</td>

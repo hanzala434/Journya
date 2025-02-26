@@ -4,25 +4,26 @@ import { useEffect, useState } from 'react';
 import Search from './Search';
 import OptionsMenu from './OptionsMenu';
 import { fetchAdmins } from '../lib/adminApi';
+import OptionsAdmin from './OptionsAdmin';
 
-export default function TableAdmins({searchQuery}) {
+export default function TableAdmins({searchQuery,refresh}) {
       // const admins=await fetchAdmins();
     
   const [admins, setAdmins] = useState([]); // Store users from API
   // const [searchQuery, setSearchQuery] = useState(''); // Search input state
-
+   const refreshAdmin = async () => {
+    try {
+      const data = await fetchAdmins();
+      setAdmins(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  };
   //Fetch users from API when component mounts
   useEffect(() => {
-    async function loadAdmins() {
-      try {
-        const data = await fetchAdmins();
-        setAdmins(data);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    }
-    loadAdmins();
-  }, []);
+    refreshAdmin();
+
+  }, [refresh]);
 
   //Filter users based on search query (name or email)
   const filteredAdmins = admins.filter(admin =>
@@ -51,14 +52,14 @@ export default function TableAdmins({searchQuery}) {
               <tbody>
                 {filteredAdmins.length > 0 ? (
                   filteredAdmins.map(admin => (
-                    <tr key={admin.id} className="border-b text-sm">
+                    <tr key={admin._id} className="border-b text-sm">
                       <td className="py-3 pl-6">{admin.name}</td>
                       <td className="px-3 py-3">{admin.email}</td>
                       <td className="px-3 py-3">{admin.phone}</td>
                       <td className="px-3 py-3">{admin.signup}</td>
                     
                       <td className="px-3 py-3">
-                        <OptionsMenu className='text-left' />
+                        <OptionsAdmin admin={admin} refreshAdmin={refreshAdmin} />     
                       </td>
                     </tr>
                   ))

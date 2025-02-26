@@ -4,6 +4,10 @@ const ITEMS_PER_PAGE = 6;
 
 // Fetch all subscriptions
 export async function fetchSubscriptions() {
+  console.log("NEXTAUTH_URL:", process.env.NEXT_PUBLIC_NEXTAUTH_URL);
+
+  const response=await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/subscription`);
+  const subscription=await response.json();
   return subscription;
 }
 

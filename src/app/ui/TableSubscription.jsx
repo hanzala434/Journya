@@ -51,7 +51,7 @@ export default function TableSubscription({searchQuery}) {
               <tbody>
                 {filteredSubscription.length > 0 ? (
                   filteredSubscription.map(subscription => (
-                    <tr key={subscription.id} className="border-b text-sm">
+                    <tr key={subscription._id} className="border-b text-sm">
                       <td className="px-3 py-3">{subscription.email}</td>
                       <td className="px-3 py-3">{subscription.cost}</td>
                       <td className="px-3 py-3">{subscription.duration}</td>

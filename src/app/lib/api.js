@@ -21,7 +21,7 @@ export async function fetchUsers() {
 // Create a new user
 export async function createUser(userData) {
   try {
-    const response = await fetch(`${process.env.NEXTAUTH_URL}/api/users`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export async function createUser(userData) {
 
 // ✅ Delete a user by ID
 export async function deleteUser(id) {
-  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/users`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ id })
@@ -54,7 +54,7 @@ export async function deleteUser(id) {
 
 // ✅ Update user status (Activate/Deactivate)
 export async function updateUserStatus(id, status) {
-  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/users`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ id, status })
@@ -65,7 +65,7 @@ export async function updateUserStatus(id, status) {
 
 // ✅ Reset user password
 export async function resetUserPassword(id, newPassword) {
-  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/users`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ id, newPassword })

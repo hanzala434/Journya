@@ -50,10 +50,10 @@ export default function TableUsers({searchQuery,refresh }) {
               <tbody>
                 {filteredUsers.length > 0 ? (
                   filteredUsers.map(user => (
-                    <tr key={user.id} className="border-b text-sm">
+                    <tr key={user._id} className="border-b text-sm">
                       <td className="py-3 pl-6">{user.name}</td>
                       <td className="px-3 py-3">{user.email}</td>
-                      <td className="px-3 py-3">{user.duration}</td>
+                      <td className="px-3 py-3">{user.signup}</td>
                       <td className="px-3 py-3">{user.lastlogin}</td>
                       <td className="px-3 py-3">
                         <UserStatus status={user.status} />

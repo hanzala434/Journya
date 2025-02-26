@@ -8,6 +8,7 @@ import { Suspense, useState } from "react";
 export default function Admins(){
         const [isDialogOpen, setIsDialogOpen] = useState(true);
         const [searchQuery, setSearchQuery] = useState(''); // Search input state
+        const [refreshTable, setRefreshTable] = useState(false);
 
     return(
         <>
@@ -19,13 +20,14 @@ export default function Admins(){
                 <div className="mb-4 flex gap-2">
 
             <Search placeholder="Search users..." onSearch={setSearchQuery} />
-            {isDialogOpen && <AdminDialog onClose={() => setIsDialogOpen(false)} />}
-            </div>
+            {isDialogOpen && ( <AdminDialog onClose={
+                () => setIsDialogOpen(false)} 
+                 onAdminAdd={() => setRefreshTable(prev => !prev)} />)}            </div>
             </div>
             
             <div>
             <Suspense fallback={<div>Loading admins...</div>}>
-                <TableAdmin searchQuery={searchQuery}/>
+                <TableAdmin searchQuery={searchQuery} refresh={refreshTable}/>
             </Suspense>
                 
             </div>
