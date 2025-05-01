@@ -11,9 +11,6 @@ importers:
       '@heroicons/react':
         specifier: ^2.2.0
         version: 2.2.0(react@19.0.0)
-      '@next/bundle-analyzer':
-        specifier: ^15.1.7
-        version: 15.1.7
       '@prisma/client':
         specifier: ^6.4.1
         version: 6.4.1(prisma@6.4.1)
@@ -72,6 +69,12 @@ importers:
         specifier: ^11.1.0
         version: 11.1.0
     devDependencies:
+      '@next/bundle-analyzer':
+        specifier: ^15.3.1
+        version: 15.3.1
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
       postcss:
         specifier: ^8
         version: 8.5.2
@@ -388,8 +391,8 @@ packages:
   '@mongodb-js/saslprep@1.2.0':
     resolution: {integrity: sha512-+ywrb0AqkfaYuhHs6LxKWgqbh3I72EpEgESCw37o+9qPx9WTCkgDm2B+eMrwehGtHBWHFU4GXvnSCNiFhhausg==}
 
-  '@next/bundle-analyzer@15.1.7':
-    resolution: {integrity: sha512-tESiAwTUEpzzxKMLDbQuPHvD+PFDjY+0O3R4T5bpjIo0cr5fvppbbllQbtksQbBEquT55Eu8JmDoOlc9YFv6Kw==}
+  '@next/bundle-analyzer@15.3.1':
+    resolution: {integrity: sha512-NqUZrjVruGbdQaPE3OSEXP+ZuULqumeHVTuU9pOX1V0/9BWY9FOck3jgQGFdBtG41nOYuO8+CoHKDQAVIPQJrw==}
 
   '@next/env@15.1.7':
     resolution: {integrity: sha512-d9jnRrkuOH7Mhi+LHav2XW91HOgTAWHxjMPkXMGBc9B2b7614P7kjt8tAplRvJpbSt4nbO1lugcT/kAaWzjlLQ==}
@@ -678,6 +681,11 @@ packages:
   cookie@0.7.1:
     resolution: {integrity: sha512-6DnInpx7SJ2AK3+CTUE/ZM0vWTUboZCegxhC2xiIydHR9jNuTAASBrfEpHhiGOZw/nX51bHt6YQl8jsGo4y/0w==}
     engines: {node: '>= 0.6'}
+
+  cross-env@7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -1678,7 +1686,7 @@ snapshots:
     dependencies:
       sparse-bitfield: 3.0.3
 
-  '@next/bundle-analyzer@15.1.7':
+  '@next/bundle-analyzer@15.3.1':
     dependencies:
       webpack-bundle-analyzer: 4.10.1
     transitivePeerDependencies:
@@ -1926,6 +1934,10 @@ snapshots:
 
   cookie@0.7.1: {}
 
+  cross-env@7.0.3:
+    dependencies:
+      cross-spawn: 7.0.6
+
   cross-spawn@7.0.6:
     dependencies:
       path-key: 3.1.1
@@ -2131,7 +2143,6 @@ snapshots:
   journya@file:(apexcharts@4.4.0):
     dependencies:
       '@heroicons/react': 2.2.0(react@19.0.0)
-      '@next/bundle-analyzer': 15.1.7
       '@prisma/client': 6.4.1(prisma@6.4.1)
       bcrypt: 5.1.1
       bcryptjs: 3.0.2
@@ -2139,6 +2150,7 @@ snapshots:
       clsx: 2.1.1
       git: 0.1.5
       mime: 4.0.6
+      mongodb: 6.13.1
       mongoose: 8.10.1
       next: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       next-auth: 4.24.11(next@15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -2159,7 +2171,6 @@ snapshots:
       - apexcharts
       - babel-plugin-macros
       - babel-plugin-react-compiler
-      - bufferutil
       - encoding
       - gcp-metadata
       - kerberos
@@ -2170,7 +2181,6 @@ snapshots:
       - socks
       - supports-color
       - typescript
-      - utf-8-validate
 
   js-tokens@4.0.0: {}
 
