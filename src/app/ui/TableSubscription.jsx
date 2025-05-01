@@ -4,11 +4,21 @@ import { useEffect, useState } from 'react';
 import Search from './Search';
 import OptionsMenu from './OptionsMenu';
 import { fetchSubscriptions } from '../lib/subscriptionApi';
+import OptionSubscription from './OptionSubscription';
 
 export default function TableSubscription({searchQuery}) {
     // const subscription =await fetchSubscriptions()
-   const [subscription, setSubscription] = useState([]); // Store users from API
-  
+   const [subscription, setSubscription] = useState([]); 
+   
+     const refreshSubscription = async () => {
+      try {
+        const data = await fetchSubscriptions();
+        setSubscription(data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
     useEffect(() => {
       async function loadSubscription() {
         try {
@@ -29,12 +39,8 @@ export default function TableSubscription({searchQuery}) {
 
   return (
     <div className="mt-6">
-      {/* Search Bar */}
-      {/* <div className="mb-4 ">
-        <Search onSearch={setSearchQuery} />
-      </div> */}
 
-      {/* Users Table */}
+      {/* Subscription Table */}
       <div className="flow-root">
         <div className="inline-block min-w-full align-middle">
           <div className="rounded-lg p-2">
@@ -58,7 +64,7 @@ export default function TableSubscription({searchQuery}) {
                       <td className="px-3 py-3">{subscription.renewalDate}</td>
 
                       <td className="px-3 py-3">
-                        <OptionsMenu />
+                        <OptionSubscription subscription={subscription} refreshSubscription={refreshSubscription} />
                       </td>
                     </tr>
                   ))

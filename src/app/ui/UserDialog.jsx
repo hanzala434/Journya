@@ -107,7 +107,7 @@ export default function UserDialog(){
                     >
                     <option value="Monthly">Monthly</option>
                     <option value="Yearly">Yearly</option>
-                    <option value="Weekly">Weekly</option>
+                    <option value="Lifetime">Lifetime</option>
                     </select>
                 </div>
 

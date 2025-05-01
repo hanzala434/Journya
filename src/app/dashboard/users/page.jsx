@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function Users(){
     const [isDialogOpen, setIsDialogOpen] = useState(true);
-    const [searchQuery, setSearchQuery] = useState(''); // Search input state
+    const [searchQuery, setSearchQuery] = useState('');
     const [refreshTable, setRefreshTable] = useState(false);
     // const [users, setUsers] = useState([]);
     // const [loading, setLoading] = useState(true);

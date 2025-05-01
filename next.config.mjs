@@ -1,6 +1,9 @@
-/** @type {import('next').NextConfig} */
-import withBundleAnalyzer from "@next/bundle-analyzer";
+// next.config.mjs
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
-const nextConfig = {};
+const nextConfig = {
+  reactStrictMode: true,
+  // other config
+};
 
-export default withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })(nextConfig);
+export default withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })(nextConfig);

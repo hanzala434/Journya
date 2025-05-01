@@ -1,8 +1,11 @@
 'use client'
 import TotalBar from '@/app/ui/TotalBar'
-import DashboardGraph from '../ui/DashboardGraph';
-import BarChart from '../ui/BarChart';
-import RadialChart from '../ui/RadialChart';
+import dynamic from 'next/dynamic'
+
+const BarChart = dynamic(() => import('../ui/BarChart'), { ssr: false });
+const DashboardGraph = dynamic(() => import('../ui/DashboardGraph'), { ssr: false });
+const RadialChart = dynamic(() => import('../ui/RadialChart'), { ssr: false });
+
 import { useSession, signIn, signOut } from "next-auth/react"
 export default function Page() {
     

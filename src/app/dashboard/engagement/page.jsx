@@ -1,5 +1,9 @@
+'use client'
+
 import EngagementBar from '@/app/ui/EngagementBar'
-import DashbaardGraph from '@/app/ui/DashboardGraph'
+import dynamic from 'next/dynamic'
+const DashbaardGraph = dynamic(() => import('@/app/ui/DashboardGraph'), { ssr: false });
+
 export default function Engagement(){
     return(
         <>

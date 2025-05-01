@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import SessionWraper from "./ui/SessionWraper";
+import Script from "next/script";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -16,9 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <script>
-  localStorage.theme = 'light'
-</script>
+      <Script>
+      {`localStorage.theme = 'light'`}
+      </Script>
 
       <body
         className={`${poppins.variable} antialiased`}

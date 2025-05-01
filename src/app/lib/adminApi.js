@@ -1,81 +1,72 @@
-import { admins } from "./data";
-
 const ITEMS_PER_PAGE = 6; // Define items per page for pagination
 
 // Fetch all admins
 export async function fetchAdmins() {
-  console.log("NEXTAUTH_URL:", process.env.NEXT_PUBLIC_NEXTAUTH_URL);
-
-  const response=await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/admin`);
-  const admin=await response.json();
-  return admin;}
+  const response = await fetch("/api/admin");
+  if (!response.ok) throw new Error("Failed to fetch admins");
+  return await response.json();
+}
 
 // Fetch a single admin by ID
 export async function fetchAdminById(id) {
-  const admin = admins.find((admin) => admin.id === id);
-  if (!admin) throw new Error("Admin not found");
-  return admin;
+  const response = await fetch(`/api/admin/${id}`);
+  if (!response.ok) throw new Error("Admin not found");
+  return await response.json();
 }
 
 // Create a new admin
-export async function createAdmin({ name, phone }) {
-  const newAdmin = {
-    id: (admins.length + 1).toString(),
-    name,
-    phone,
-    signup: new Date().toLocaleString(),
-  };
+export async function createAdmin({ name, email, phone, signup }) {
+  const response = await fetch("/api/admin", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, phone, signup }),
+  });
 
-  admins.push(newAdmin);
-  return newAdmin;
+  if (!response.ok) throw new Error("Failed to create admin");
+  return await response.json();
 }
 
 // Update an existing admin
 export async function updateAdmin(id, updatedData) {
-  const adminIndex = admins.findIndex((admin) => admin.id === id);
-  if (adminIndex === -1) throw new Error("Admin not found");
+  const response = await fetch(`/api/admin/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updatedData),
+  });
 
-  admins[adminIndex] = {
-    ...admins[adminIndex],
-    ...updatedData,
-  };
-
-  return admins[adminIndex];
+  if (!response.ok) throw new Error("Failed to update admin");
+  return await response.json();
 }
 
 // Delete an admin
 export async function deleteAdmin(id) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/admin`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id })
-    });
-  
-    return await response.json();
-  }
+  const response = await fetch("/api/admin", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id }),
+  });
 
-// Fetch paginated admins with search
+  if (!response.ok) throw new Error("Failed to delete admin");
+  return await response.json();
+}
+
+// Fetch filtered and paginated admins
 export async function fetchFilteredAdmins(query, currentPage) {
-  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
-
-  const filteredAdmins = admins.filter(
-    (admin) =>
-      admin.name.toLowerCase().includes(query.toLowerCase()) ||
-      admin.phone.includes(query)
+  const response = await fetch(
+    `/api/admin/search?query=${query}&page=${currentPage}&limit=${ITEMS_PER_PAGE}`
   );
 
-  const paginatedAdmins = filteredAdmins.slice(offset, offset + ITEMS_PER_PAGE);
-
-  return paginatedAdmins;
+  if (!response.ok) throw new Error("Failed to fetch filtered admins");
+  return await response.json();
 }
 
 // Fetch total pages for pagination
 export async function fetchAdminsPages(query) {
-  const filteredAdmins = admins.filter(
-    (admin) =>
-      admin.name.toLowerCase().includes(query.toLowerCase()) ||
-      admin.phone.includes(query)
+  const response = await fetch(
+    `/api/admin/count?query=${query}&limit=${ITEMS_PER_PAGE}`
   );
 
-  return Math.ceil(filteredAdmins.length / ITEMS_PER_PAGE);
+  if (!response.ok) throw new Error("Failed to fetch total pages");
+  const { totalPages } = await response.json();
+  return totalPages;
 }

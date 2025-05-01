@@ -1,5 +1,8 @@
+'use client'
+
 import OperationalBar from "@/app/ui/OperationalBar";
-import DashbaardGraph from '@/app/ui/DashboardGraph'
+import dynamic from 'next/dynamic'
+const DashbaardGraph = dynamic(() => import('@/app/ui/DashboardGraph'), { ssr: false });
 
 export default function Page(){
     return(

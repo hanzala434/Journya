@@ -25,3 +25,24 @@ export async function POST(req) {
     return NextResponse.json({ error: "Failed to create subscription" }, { status: 500 });
   }
 }
+
+export async function DELETE(request) {
+  try {
+    const { id } = await request.json();
+
+    await connectDB();
+
+    const deleteSubscription = await Subscription.findByIdAndDelete(id);
+    if (!deleteSubscription) {
+      return NextResponse.json({ message: "Subscription not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: "Subscription deleted successfully" });
+  } catch (error) {
+    console.error("Delete error:", error);
+    return NextResponse.json(
+      { error: "Failed to delete Subscription" },
+      { status: 500 }
+    );
+  }
+}
