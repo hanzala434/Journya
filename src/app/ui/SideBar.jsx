@@ -29,7 +29,7 @@ export default function SideBar(){
         <h1 className='text-slate-400 font-medium text-xl mb-2 '>Overview</h1>
         <Link
             href='/dashboard'
-            className='m-2 flex p-4 text-xl bg-opacity-20 bg-[#00BFA6] text-[#00BFA6] h-[48px] grow items-center justify-center gap-2 rounded-md font-mediumy md:flex-none md:justify-start md:p-2 md:px-3'
+            className='m-2 flex p-4 border-l-2 border-l-primary text-xl bg-opacity-20 bg-[#00BFA6] text-[#00BFA6] h-[48px] grow items-center justify-center gap-2 rounded-md font-mediumy md:flex-none md:justify-start md:p-2 md:px-3'
             >
             <HiOutlineSquares2X2 className="md:my-1 md:mr-2 w-6" />
             <p className="hidden md:block">Dashboard</p>

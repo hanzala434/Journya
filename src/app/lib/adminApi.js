@@ -3,9 +3,10 @@ const ITEMS_PER_PAGE = 6; // Define items per page for pagination
 // Fetch all admins
 export async function fetchAdmins() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/admin`);
-  if (!response.ok) throw new Error("Failed to fetch admins");
-  return await response.json();
+  const admins=await response.json();
+  return admins;
 }
+
 
 // Fetch a single admin by ID
 export async function fetchAdminById(id) {

@@ -1,9 +1,6 @@
-// 'use client'
-
 import { fetchUsers } from '@/app/lib/api';
 import EngagementBar from '@/app/ui/EngagementBar'
-import dynamic from 'next/dynamic'
-// const DashbaardGraph = dynamic(() => import('@/app/ui/DashboardGraph'), { ssr: false });
+import DashboardGraph from '@/app/ui/DashboardGraph'
 
 export default async function Engagement(){
     const users=await fetchUsers();
@@ -16,10 +13,10 @@ export default async function Engagement(){
                 <EngagementBar users={users}/>
             </div>
 
-            {/* <div>
+            <div>
                 <h1 className='py-2 text-xl text-slate-600'>Graphical Representation</h1>
-                <DashbaardGraph/>
-            </div> */}
+                <DashboardGraph/>
+            </div>
         </div>
         </>
     )

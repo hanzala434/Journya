@@ -2,7 +2,6 @@
 
 // Fetch all users
 export async function fetchUsers() {
-  console.log("NEXTAUTH_URL:", process.env.NEXT_PUBLIC_NEXTAUTH_URL);
 
   const response=await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/users`);
   const users=await response.json();

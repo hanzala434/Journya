@@ -3,10 +3,11 @@
 import { useEffect, useState } from 'react';
 import OptionsMenu from './OptionsMenu';
 import { fetchTransactions } from '../lib/transactionApi';
+import OptionFinancial from './OptionFinancial';
 
 export default function TableTransaction() {
     // const transaction =await fetchtransactions()
-  const [transaction, settransaction] = useState([]); // Store users from API
+  const [transaction, setTransaction] = useState([]); // Store users from API
   const [searchQuery, setSearchQuery] = useState(''); // Search input state
 
  // Fetch users from API when component mounts
@@ -14,13 +15,19 @@ export default function TableTransaction() {
     async function loadtransaction() {
       try {
         const data = await fetchTransactions();
-        settransaction(data);
+        setTransaction(data);
       } catch (error) {
         console.error('Error fetching transaction:', error);
       }
     }
     loadtransaction();
   }, []);
+
+  
+    const refreshTransaction = async () => {
+      const updatedTransactions = await fetchTransactions(); 
+      setTransaction(updatedTransactions);
+    };
 
   //Filter users based on search query (name or email)
   const filteredtransaction = transaction.filter(transaction =>
@@ -55,7 +62,7 @@ export default function TableTransaction() {
                       <td className="px-3 py-3">{transaction.date}</td>
 
                       <td className="px-3 py-3">
-                        <OptionsMenu />
+                        <OptionFinancial transaction={transaction} refreshTransaction={refreshTransaction} />
                       </td>
                     </tr>
                   ))

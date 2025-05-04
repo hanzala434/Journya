@@ -36,3 +36,24 @@ export async function POST(NextRequest) {
     return NextResponse.json({ error: "Failed to record transaction" }, { status: 500 });
   }
 }
+
+export async function DELETE(request) {
+  try {
+    const { id } = await request.json();
+
+    await connectDB();
+
+    const deletedTransaction = await Transaction.findByIdAndDelete(id);
+    if (!deletedTransaction) {
+      return NextResponse.json({ message: "Transaction not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: "Transaction deleted successfully" });
+  } catch (error) {
+    console.error("Delete error:", error);
+    return NextResponse.json(
+      { error: "Failed to delete Transaction" },
+      { status: 500 }
+    );
+  }
+}

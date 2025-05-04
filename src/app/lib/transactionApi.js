@@ -46,12 +46,16 @@ export async function updateTransaction(id, updatedData) {
 }
 
 // Delete a Transaction
-export async function deleteTransaction(id) {
-  const index = Transaction.findIndex((sub) => sub.id === id);
-  if (index === -1) throw new Error("Transaction not found");
 
-  Transaction.splice(index, 1);
-  return { message: "Transaction deleted successfully" };
+
+export async function deleteTransaction(id) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/transaction`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id })
+  });
+
+  return await response.json();
 }
 
 // Fetch paginated Transactions with search

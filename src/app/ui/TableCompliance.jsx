@@ -1,22 +1,9 @@
-"use client";
-import { useEffect, useState } from 'react';
+
 import { fetchCompliances } from '../lib/complianceApi';
 import ComplianceStatus from './ComplianceStatus';
 
-export default function TableCompliance() {
- const [compliance, setCompliance] = useState([]); // Store users from API
-  
-    useEffect(() => {
-      async function loadCompliance() {
-        try {
-          const data =await fetchCompliances()
-          setCompliance(data);
-        } catch (error) {
-          console.error('Error fetching users:', error);
-        }
-      }
-      loadCompliance();
-    }, []);
+export default async function TableCompliance() {
+const compliance= await fetchCompliances();
 
 
   return (

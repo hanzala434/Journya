@@ -1,10 +1,8 @@
-// 'use client'
 import TotalBar from '@/app/ui/TotalBar'
-// import dynamic from 'next/dynamic'
+import DashboardGraph from '@/app/ui/DashboardGraph'
+import BarChart from '@/app/ui/BarChart'
+import RadialChart from '@/app/ui/RadialChart'
 
-// const BarChart = dynamic(() => import('../ui/BarChart'), { ssr: false });
-// const DashboardGraph = dynamic(() => import('../ui/DashboardGraph'), { ssr: false });
-// const RadialChart = dynamic(() => import('../ui/RadialChart'), { ssr: false });
 
 import { useSession, signIn, signOut } from "next-auth/react"
 export default function Page() {
@@ -16,13 +14,13 @@ export default function Page() {
             <div className='flex flex-col mt-10 md:flex md:w-80 h-full '>
                 <TotalBar/>
             </div>
-            {/* <div className='md:py-10 h-full w-full '>
+            <div className='md:py-10 h-full w-full '>
                 <DashboardGraph/>
             </div>
         </div>
         <div className='md:flex-row flex flex-col'>
            <BarChart/> 
-           <RadialChart/> */}
+           <RadialChart/>
         </div>
         </>
 

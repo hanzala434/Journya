@@ -1,7 +1,5 @@
 import OperationalBar from "@/app/ui/OperationalBar";
-import dynamic from 'next/dynamic'
-const DashbaardGraph = dynamic(() => import('@/app/ui/DashboardGraph'), { ssr: false });
-
+import DashboardGraph from "@/app/ui/DashboardGraph"
 export default function Page(){
     return(
     <>
@@ -14,7 +12,7 @@ export default function Page(){
        
                    <div className="mt-6">
                        <h1 className='py-2 text-2xl text-black font-medium'>Graphical Representation</h1>
-                       <DashbaardGraph/>
+                       <DashboardGraph/>
                    </div>
                </div>
     </>
