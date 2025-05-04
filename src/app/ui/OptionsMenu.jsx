@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { TbLockPassword } from "react-icons/tb";
 import { CiCircleCheck } from "react-icons/ci";
@@ -40,39 +38,41 @@ export default function OptionsMenu({ user, refreshUsers }) {
 
       {open && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50">
-          <button
-            onClick={handlePasswordReset}
-            disabled={loading}
-            className="flex items-center px-4 py-2 text-sm text-[#00BFA6] hover:bg-gray-100 w-full text-left"
-          >
-            <TbLockPassword className="h-5 w-5 mr-2" /> Reset Password
-          </button>
-
-          {user.status === "inactive" ? (
+          <div className="py-1">
             <button
-              onClick={() => handleStatusChange("active")}
+              onClick={handlePasswordReset}
               disabled={loading}
               className="flex items-center px-4 py-2 text-sm text-[#00BFA6] hover:bg-gray-100 w-full text-left"
             >
-              <CiCircleCheck className="h-5 w-5 mr-2" /> Activate
+              <TbLockPassword className="h-5 w-5 mr-2" /> Reset Password
             </button>
-          ) : (
+
+            {user.status === "Inactive" ? (
+              <button
+                onClick={() => handleStatusChange("Active")}
+                disabled={loading}
+                className="flex items-center px-4 py-2 text-sm text-[#00BFA6] hover:bg-gray-100 w-full text-left"
+              >
+                <CiCircleCheck className="h-5 w-5 mr-2" /> Activate
+              </button>
+            ) : (
+              <button
+                onClick={() => handleStatusChange("Inactive")}
+                disabled={loading}
+                className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 w-full text-left"
+              >
+                <MdOutlineCancel className="h-5 w-5 mr-2" /> Deactivate
+              </button>
+            )}
+
             <button
-              onClick={() => handleStatusChange("inactive")}
+              onClick={handleDelete}
               disabled={loading}
               className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 w-full text-left"
             >
-              <MdOutlineCancel className="h-5 w-5 mr-2" /> Deactivate
+              <FaRegTrashAlt className="h-5 w-5 mr-2" /> Delete Account
             </button>
-          )}
-
-          <button
-            onClick={handleDelete}
-            disabled={loading}
-            className="flex items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 w-full text-left"
-          >
-            <FaRegTrashAlt className="h-5 w-5 mr-2" /> Delete Account
-          </button>
+          </div>
         </div>
       )}
     </div>

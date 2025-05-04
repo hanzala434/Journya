@@ -2,15 +2,22 @@
 import { useState } from "react";
 import { createUser, fetchUsers } from "../lib/api";
 
-export default function UserDialog(){
+export default function UserDialog({refreshUsers}){
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         duration: "",
         plan: "",
         email: "",
-        lastlogin: new Date().toISOString(),
-        status: "active",
+        lastlogin: new Date().toLocaleString("en-US", {
+            dateStyle: "medium",  
+            timeStyle: "short",   
+          }),
+        signup: new Date().toLocaleString("en-US", {
+            dateStyle: "medium",  
+            timeStyle: "short",   
+          }),
+        status: "Active",
       });
     
     const [loading, setLoading] = useState(false);
@@ -31,7 +38,7 @@ export default function UserDialog(){
 
         const updatedFormData = {
             ...formData,
-            name: extractedName, // Ensure name is updated
+            name: extractedName, 
         };
 
         const result = await createUser(updatedFormData);
@@ -43,7 +50,14 @@ export default function UserDialog(){
             duration: "",
             plan: "",
             email: "",
-            lastlogin: new Date().toISOString(),
+            lastlogin: new Date().toLocaleString("en-US", {
+                dateStyle: "medium",  
+                timeStyle: "short",   
+              }),
+            signup: new Date().toLocaleString("en-US", {
+                dateStyle: "medium",  
+                timeStyle: "short",   
+              }),
             status: "Active",
           });
         } else {
@@ -51,6 +65,7 @@ export default function UserDialog(){
         }
     
         setLoading(false);
+        refreshUsers();
       };
 
     return(

@@ -3,14 +3,14 @@ import { useState } from "react";
 import { SlEqualizer } from "react-icons/sl";
 import FilterDialog from "./FilterDialog"; // Adjust path if needed
 
-export default function FilterButton() {
+export default function FilterButton({ onFilter }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
 
   const handleApplyFilters = (filters) => {
     setSelectedFilters(filters);
-    // TODO: Filter your table based on these filters
-    console.log("Applied Filters:", filters);
+    onFilter(filters); // 👈 send selected filters up
+    setIsOpen(false);
   };
 
   return (
@@ -34,3 +34,4 @@ export default function FilterButton() {
     </>
   );
 }
+

@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react";
 
-export default function AdminDialog(){
+export default function AdminDialog({refreshAdmins}){
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({
       email: "",
@@ -30,14 +30,17 @@ export default function AdminDialog(){
                 body: JSON.stringify({
                     ...formData,
                     name: formData.email.split("@")[0], // Extract name from email
-                    signup: new Date().toISOString(), // Set last login timestamp
-                    phone: "", 
+                    signup:  new Date().toLocaleString("en-US", {
+                      dateStyle: "medium",  
+                      timeStyle: "short",   
+                    }),
+                    phone: " ", 
 
                 }),
             });
 
             if (!response.ok) {
-                throw new Error("Failed to add user");
+                throw new Error("Failed to add admin");
             }
 
             const data = await response.json();
@@ -51,6 +54,7 @@ export default function AdminDialog(){
         } finally {
             setLoading(false);
         }
+        refreshAdmins();
     };
 
     return(
@@ -61,7 +65,7 @@ export default function AdminDialog(){
         onClick={() => setIsOpen(true)}
         className="p-4 w-40 bg-[#00BFA6] text-white rounded-md"
       >
-        + New User      </button>
+        + New Admin      </button>
 
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">

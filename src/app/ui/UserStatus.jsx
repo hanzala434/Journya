@@ -2,13 +2,13 @@ import { MdOutlineCancel } from "react-icons/md";
 import { CiCircleCheck } from "react-icons/ci";
 
 export default function UserStatus({ status }) {
-    const statusColor = status === 'active' ? 'text-green-500' : 'text-red-500';
+    const statusColor = status === 'Active' ? 'text-green-500' : 'text-red-500';
 
     return (
         <>
         
       <div className="flex items-center gap-1">
-        {status === 'active' ? (
+        {status === 'Active' ? (
           <CiCircleCheck className={`h-5 w-5 ${statusColor}`} />
         ) : (
           <MdOutlineCancel className={`h-5 w-5 ${statusColor}`} />

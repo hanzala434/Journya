@@ -5,7 +5,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { deleteAdmin } from "../lib/adminApi";
 
-export default function OptionsAdmin({ admin, refreshAdmin }) {
+export default function OptionsAdmin({ admin, refreshAdmins }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -13,7 +13,7 @@ export default function OptionsAdmin({ admin, refreshAdmin }) {
     setLoading(true);
     await deleteAdmin(admin._id);
     setLoading(false);
-    refreshAdmin();
+    refreshAdmins();
   };
 
  

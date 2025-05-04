@@ -2,7 +2,7 @@ const ITEMS_PER_PAGE = 6; // Define items per page for pagination
 
 // Fetch all admins
 export async function fetchAdmins() {
-  const response = await fetch("/api/admin");
+  const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/admin`);
   if (!response.ok) throw new Error("Failed to fetch admins");
   return await response.json();
 }
@@ -16,7 +16,7 @@ export async function fetchAdminById(id) {
 
 // Create a new admin
 export async function createAdmin({ name, email, phone, signup }) {
-  const response = await fetch("/api/admin", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/admin`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, email, phone, signup }),

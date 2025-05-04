@@ -6,37 +6,9 @@ import OptionsMenu from './OptionsMenu';
 import { fetchSubscriptions } from '../lib/subscriptionApi';
 import OptionSubscription from './OptionSubscription';
 
-export default function TableSubscription({searchQuery}) {
+export default function TableSubscription({subscriptions, refreshSubscriptions}) {
     // const subscription =await fetchSubscriptions()
-   const [subscription, setSubscription] = useState([]); 
-   
-     const refreshSubscription = async () => {
-      try {
-        const data = await fetchSubscriptions();
-        setSubscription(data);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    };
-
-    useEffect(() => {
-      async function loadSubscription() {
-        try {
-          const data = await fetchSubscriptions();
-          setSubscription(data);
-        } catch (error) {
-          console.error('Error fetching users:', error);
-        }
-      }
-      loadSubscription();
-    }, []);
-
-  //Filter users based on search query (name or email)
-  const filteredSubscription = subscription.filter(subscription =>
-    subscription.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    subscription.email.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
+  
   return (
     <div className="mt-6">
 
@@ -55,8 +27,8 @@ export default function TableSubscription({searchQuery}) {
                 </tr>
               </thead>
               <tbody>
-                {filteredSubscription.length > 0 ? (
-                  filteredSubscription.map(subscription => (
+                {subscriptions.length > 0 ? (
+                  subscriptions.map(subscription => (
                     <tr key={subscription._id} className="border-b text-sm">
                       <td className="px-3 py-3">{subscription.email}</td>
                       <td className="px-3 py-3">{subscription.cost}</td>
@@ -64,7 +36,7 @@ export default function TableSubscription({searchQuery}) {
                       <td className="px-3 py-3">{subscription.renewalDate}</td>
 
                       <td className="px-3 py-3">
-                        <OptionSubscription subscription={subscription} refreshSubscription={refreshSubscription} />
+                        <OptionSubscription subscription={subscription} refreshSubscriptions={refreshSubscriptions} />
                       </td>
                     </tr>
                   ))

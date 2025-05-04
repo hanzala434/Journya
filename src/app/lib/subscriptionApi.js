@@ -2,7 +2,7 @@ const ITEMS_PER_PAGE = 6;
 
 // Fetch all subscriptions
 export async function fetchSubscriptions() {
-  const response = await fetch("/api/subscription");
+  const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/subscription`);
   if (!response.ok) throw new Error("Failed to fetch subscriptions");
   return await response.json();
 }
@@ -41,7 +41,7 @@ export async function updateSubscription(id, updatedData) {
 // Delete a subscription
 export async function deleteSubscription(id) {
   console.log(id);
-  const response = await fetch("/api/subscription", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/subscription`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ id }),

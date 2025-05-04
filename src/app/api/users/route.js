@@ -11,9 +11,9 @@ export async function GET(req) {
 
 export async function POST(NextRequest) {
   try {
-    const { email, signup, lastlogin,status,name } = await NextRequest.json();
+    const { email, signup, lastlogin,status,name,duration,plan } = await NextRequest.json();
 
-    if (!email || !signup ||!name || !lastlogin ||!status) {
+    if (!email || !signup ||!name || !lastlogin ||!status || !plan || !duration) {
       return NextResponse.json(
         { error: "please fill all the fields" },
         { status: 400 }
@@ -37,6 +37,8 @@ export async function POST(NextRequest) {
       email,
       name,
       signup,
+      plan,
+      duration,
       lastlogin,
       status    });
 

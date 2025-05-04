@@ -8,7 +8,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { deleteSubscription } from "../lib/subscriptionApi";
 
-export default function OptionSubscription({ subscription, refreshSubscription }) {
+export default function OptionSubscription({ subscription, refreshSubscriptions }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -17,7 +17,7 @@ export default function OptionSubscription({ subscription, refreshSubscription }
     console.log(subscription._id);
     await deleteSubscription(subscription._id);
     setLoading(false);
-    refreshSubscription(); // Refresh the subscription list after deletion
+    refreshSubscriptions(); // Refresh the subscription list after deletion
   };
 
 //   const handleStatusChange = async (newStatus) => {
