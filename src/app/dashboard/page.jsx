@@ -14,7 +14,7 @@ export default function Page() {
             <div className='flex flex-col mt-10 md:flex md:w-80 h-full '>
                 <TotalBar/>
             </div>
-            <div className='md:py-10 h-full w-full '>
+            <div className='md:py-10 h-full md:w-full '>
                 <DashboardGraph/>
             </div>
         </div>

@@ -38,13 +38,13 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-                'm-2 flex p-4 text-xl text-slate-400 h-[48px] grow items-center justify-center gap-2 rounded-md hover:bg-[#00BFA6] hover:bg-opacity-20 hover:text-[#00BFA6] md:flex-none md:justify-start md:p-2 md:px-3',
+                  'm-2 flex p-4 text-base md:text-xl text-slate-400 h-[48px] grow items-center justify-start gap-2 rounded-md hover:bg-[#00BFA6] hover:bg-opacity-20 hover:text-[#00BFA6] md:flex-none md:p-2 md:px-3',
                 {
                   'bg-primaryLight text-primary shadow-md border-l-2 border-l-primary': isActive, 
                 },
               )}             >
             <LinkIcon className="md:my-1 md:mr-2 w-6" />
-            <p className="hidden md:block">{link.name}</p>
+            <p className="md:block">{link.name}</p>
           </Link>
         );
       })}

@@ -6,9 +6,8 @@ import { fetchAdmins } from '../lib/adminApi';
 import TableAdmin from './TableAdmin';
 import AdminDialog from './AdminDialog';
 
-export default function adminsClient({ admins: initialAdmins }) {
+export default function AdminsClient({ admins: initialAdmins }) {
   const [admins, setAdmins] = useState(initialAdmins);
-
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredAdmins = useMemo(() => {
@@ -19,34 +18,32 @@ export default function adminsClient({ admins: initialAdmins }) {
   }, [searchQuery, admins]);
 
   const refreshAdmins = async () => {
-    const updatedadmins = await fetchAdmins(); 
-    setAdmins(updatedadmins);
+    const updatedAdmins = await fetchAdmins();
+    setAdmins(updatedAdmins);
   };
 
   return (
-    <>
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl text-gray-600">
+    <div className="w-full px-2 md:px-6">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-4">
+        <h2 className="text-lg md:text-xl font-semibold text-gray-700">
           Total Admins: {filteredAdmins.length}
         </h2>
-        <div className="flex gap-2">
+
+        <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
           <Search
             placeholder="Search admins..."
             onSearch={setSearchQuery}
           />
-        
+
+          <AdminDialog
+            refreshAdmins={refreshAdmins}
+          />
         </div>
-        <AdminDialog
-          onClose={() => setIsDialogOpen(false)}
-          refreshAdmins={refreshAdmins}
-        />
       </div>
 
-      
-
-      <div className="mt-4">
-        <TableAdmin admins={filteredAdmins}  refreshAdmins={refreshAdmins}/>
+      <div className="mt-4 overflow-x-auto">
+        <TableAdmin admins={filteredAdmins} refreshAdmins={refreshAdmins} />
       </div>
-    </>
+    </div>
   );
 }

@@ -8,7 +8,6 @@ import { fetchUsers } from '../lib/api';
 
 export default function UsersClient({ users: initialUsers }) {
   const [users, setUsers] = useState(initialUsers);
-
   const [searchQuery, setSearchQuery] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -20,33 +19,32 @@ export default function UsersClient({ users: initialUsers }) {
   }, [searchQuery, users]);
 
   const refreshUsers = async () => {
-    const updatedUsers = await fetchUsers(); 
+    const updatedUsers = await fetchUsers();
     setUsers(updatedUsers);
   };
 
   return (
     <>
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl text-gray-600">
+      <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center mb-4">
+        <h2 className="text-lg sm:text-xl text-gray-600">
           Total Users: {filteredUsers.length}
         </h2>
-        <div className="flex gap-2">
+
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <Search
             placeholder="Search users..."
             onSearch={setSearchQuery}
           />
-        
+     <UserDialog
+        onClose={() => setIsDialogOpen(false)}
+        refreshUsers={refreshUsers}
+      />
         </div>
-        <UserDialog
-          onClose={() => setIsDialogOpen(false)}
-          refreshUsers={refreshUsers}
-        />
       </div>
 
-      
-
-      <div className="mt-4">
-        <TableUsers users={filteredUsers}  refreshUsers={refreshUsers}/>
+     
+      <div className="mt-4 overflow-x-auto">
+        <TableUsers users={filteredUsers} refreshUsers={refreshUsers} />
       </div>
     </>
   );
