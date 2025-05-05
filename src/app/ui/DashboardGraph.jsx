@@ -161,9 +161,9 @@ export default function LineChart() {
   };
 
   return (
-    <div className="w-full m-2 p-2 sm:p-4 md:p-6 border-2 rounded shadow-sm">
+    <div className="w-full max-w-full m-2 p-2 sm:p-4 md:p-6 border-2 rounded shadow-sm">
       <h2 className="text-base sm:text-lg md:text-xl font-semibold text-center mb-2 md:mb-4">Revenue Breakdown</h2>
-      <div className="relative w-auto h-[250px] md:w-[565px] sm:h-[300px] md:h-[350px]">
+      <div className="relative w-full h-[250px] sm:h-[300px] md:h-[350px] lg:h-[400px]">
         <Line data={data} options={options} />
       </div>
     </div>

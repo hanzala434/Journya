@@ -42,7 +42,7 @@ export default function SideBar() {
   // Handle logout with redirection to login page
   const handleLogout = (e) => {
     e.preventDefault()
-    signOut({ callbackUrl: "/login" })
+    signOut({ callbackUrl: "/" })
   }
 
   return (

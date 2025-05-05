@@ -10,11 +10,11 @@ export default function Page() {
     return(
         <>
 
-        <div className='md:flex gap-1 min-h-[500px]'>
+        <div className='md:flex gap-1 min-h-[500px] w-full'>
             <div className='flex flex-col mt-10 md:flex md:w-80 h-full '>
                 <TotalBar/>
             </div>
-            <div className='md:py-10 h-full md:w-full '>
+            <div className='md:py-10 h-full md:w-[650px] '>
                 <DashboardGraph/>
             </div>
         </div>

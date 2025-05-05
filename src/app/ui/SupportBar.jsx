@@ -6,22 +6,17 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
-
 const links = [
-    { name: 'Total Tickets', href: '/dashboard', figures:'220', icon: IoTicketOutline },
-  { name: 'Received Ticket', href: '/dashboard',figures:'220', icon: IoTicketOutline },
-  { name: 'Pending Tickets', href: '/dashboard',figures:'220', icon: IoTicketOutline },
-
-
-
+  { name: 'Total Tickets', href: '/dashboard', figures: '220', icon: IoTicketOutline },
+  { name: 'Received Ticket', href: '/dashboard', figures: '220', icon: IoTicketOutline },
+  { name: 'Pending Tickets', href: '/dashboard', figures: '220', icon: IoTicketOutline },
 ];
 
 export default function SupportBar() {
-  const pathname=usePathname();
+  const pathname = usePathname();
 
   return (
-    <>
-    
+    <div className="flex flex-col md:flex-row gap-4">
       {links.map((link) => {
         const LinkIcon = link.icon;
         return (
@@ -29,20 +24,20 @@ export default function SupportBar() {
             key={link.name}
             href={link.href}
             className={clsx(
-                'md:h-[123px] md:w-60 m-2 flex p-4 text-xl text-slate-400 grow items-center justify-center gap-2 rounded-md bg-white border-2 font-medium hover:bg-sky-100 hover:text-[#00BFA6] md:flex-none md:justify-center md:p-2 md:px-3',
-                {
-                  'bg-sky-100 text-[#00BFA6]': pathname === link.href,
-                },
-              )}   
+              'flex flex-1 items-center gap-4 rounded-md border-2 bg-white p-4 text-xl font-medium text-slate-400 hover:bg-sky-100 hover:text-[#00BFA6] md:max-w-[240px]',
+              {
+                'bg-sky-100 text-[#00BFA6]': pathname === link.href,
+              },
+            )}
           >
-            <LinkIcon className="bg-[#00BFA6] text-[#00BFA6] rounded-full bg-opacity-10 md:my-1 md:mr-2 text-6xl p-1" />
+            <LinkIcon className="text-6xl text-[#00BFA6] bg-[#00BFA6]/10 rounded-full p-1" />
             <div>
-            <p className="md:block text-sm">{link.name}</p>
-            <p className="text-center text-black">{link.figures}</p>
+              <p className="text-sm">{link.name}</p>
+              <p className="text-black text-lg font-semibold">{link.figures}</p>
             </div>
           </Link>
         );
       })}
-    </>
+    </div>
   );
 }
