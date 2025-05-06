@@ -1,6 +1,6 @@
 import journya from '@/app/assets/journya.png'
 import Image from 'next/image'
-import RegisterForm from '../ui/RegisterForm'
+import RegisterForm from '@/app/ui/RegisterForm'
 
 export default function Register() {
   return (

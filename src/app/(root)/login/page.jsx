@@ -1,5 +1,5 @@
 import journya from '@/app/assets/journya.png';
-import LoginForm from '../ui/LoginForm';
+import LoginForm from '@/app/ui/LoginForm';
 import Image from 'next/image';
 
 export default function Login() {
